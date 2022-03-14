@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: public-cert
+  namespace: istio-system
+type: kubernetes.io/tls
+data:
+  tls.crt: ${ISTIO_GW_CRT}
+  tls.key: ${ISTIO_GW_KEY}

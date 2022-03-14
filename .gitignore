@@ -1,0 +1,17 @@
+**/.terra*
+.secrets
+secrets.sh
+deploy-vars.sh
+scripts/bigbang/**
+scripts/bigbang
+
+*.kubeconfig
+
+*.crt
+*.key
+*.srl
+
+/venv
+__pycache__
+
+.DS_Store

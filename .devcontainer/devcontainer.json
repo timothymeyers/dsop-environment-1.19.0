@@ -1,0 +1,24 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/azure-functions-dotnetcore-3.1
+{
+  "name": "DSOP Environment",
+  "dockerFile": "Dockerfile",
+  "mounts": [
+    // ssh keys for git repos
+    "type=bind,source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh-localhost"
+  ],
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+	"ms-vscode.azure-account",
+	"ms-python.python",
+	"redhat.vscode-yaml"
+],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "sudo chown -R $(whoami) ~/  && mkdir -p /home/vscode/.ssh && cp -r /home/vscode/.ssh-localhost/* /home/vscode/.ssh && chmod 700 /home/vscode/.ssh && chmod 600 /home/vscode/.ssh/*",
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode"
+}
