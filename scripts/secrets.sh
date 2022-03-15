@@ -1,0 +1,6 @@
+export IRON_BANK_USER=""
+export IRON_BANK_PAT=""
+export AZDO_USER=""
+export AZDO_PASSWORD="" 
+export ISTIO_GW_CRT=""
+export ISTIO_GW_KEY=""
