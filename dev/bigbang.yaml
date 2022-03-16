@@ -13,7 +13,7 @@ spec:
   gitImplementation: libgit2
   url: https://github.com/cheruvu1/dsop-environment
   ref:
-    branch: env/bbnew
+    branch: env/ver28
   secretRef:
     name: private-git
 ---
