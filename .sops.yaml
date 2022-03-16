@@ -7,7 +7,7 @@ creation_rules:
 #  path_regex: base/.*
 #- path_regex: dev/.*
 #  encrypted_regex: '^(data|stringData)$'
-#  pgp: FALSE_KEY_HERE
+#  pgp: 3F3BB5C2B4E450537753ED9AFDE885B4E09B35A9
 #- path_regex: prod/.*
 #  encrypted_regex: '^(data|stringData)$'
 #  pgp: ANOTHER_FALSE_KEY_HERE
