@@ -2,14 +2,14 @@
 #   both the bases reference and the GitRepository reference
 bases:
   - git::https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=1.29.0
-resources:
-  - istio-gw-cert.enc.yaml
+resources:  
 configMapGenerator:
   - name: common
     behavior: merge
     files:
       - values.yaml=configmap.yaml
 patchesStrategicMerge:
+  - istio-gw-cert.enc.yaml
   - secrets.enc.yaml
   - |-
     apiVersion: source.toolkit.fluxcd.io/v1beta1
