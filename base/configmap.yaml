@@ -1,8 +1,8 @@
 domain: bigbang.dev
 
 
-  nexus:
-    enabled: true
-    # bug in bigbang 1.18.0, remove this in 1.19.0
-    git:
-      tag: "34.1.0-bb.2"
+nexus:
+  enabled: true
+  # bug in bigbang 1.18.0, remove this in 1.19.0
+  git:
+    tag: "34.1.0-bb.2"
