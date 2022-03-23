@@ -75,10 +75,13 @@ if [[ $USE_KEYVAULT_CERT == "true" ]]; then
 fi
 
 envsubst < $scriptPath/secrets.enc.yaml.template > $scriptPath/../base/secrets.enc.yaml
-envsubst < $scriptPath/istio-gw-cert.enc.yaml.template > $scriptPath/../base/istio-gw-cert.enc.yaml
+#envsubst < $scriptPath/istio-gw-cert.enc.yaml.template > $scriptPath/../base/istio-gw-cert.enc.yaml
+envsubst < $scriptPath/configmap.yaml.template > $scriptPath/../base/configmap.yaml
 sops --encrypt --in-place $scriptPath/../base/secrets.enc.yaml
-sops --encrypt --in-place $scriptPath/../base/istio-gw-cert.enc.yaml
-git add $scriptPath/../base/secrets.enc.yaml $scriptPath/../base/istio-gw-cert.enc.yaml
+#sops --encrypt --in-place $scriptPath/../base/istio-gw-cert.enc.yaml
+sops --encrypt --in-place $scriptPath/../base/configmap.yaml
+#git add $scriptPath/../base/secrets.enc.yaml $scriptPath/../base/istio-gw-cert.enc.yaml
+git add $scriptPath/../base/secrets.enc.yaml $scriptPath/../base/configmap.yaml
 git commit -m "Updated by deployment script $(date)"
 git push
 

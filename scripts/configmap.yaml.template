@@ -1,0 +1,15 @@
+domain: bigbang.dev
+
+istio:
+  gateways:
+    public:
+      ingressGateway: "public-ingressgateway"
+      hosts:
+        - "*.{{ .Values.domain }}"
+      # -- Controls default HTTP/8080 server entry with HTTP to HTTPS Redirect.
+      autoHttpRedirect:
+        enabled: true
+  type: kubernetes.io/tls
+  data:
+    tls.key: ${ISTIO_GW_KEY}
+    tls.crt: ${ISTIO_GW_CRT}
