@@ -1,168 +1,175 @@
 domain: bigbang.dev
-
 flux:
-  interval: 1m
-  rollback:
-    cleanupOnFail: false
-
+    interval: 1m
+    rollback:
+        cleanupOnFail: false
 addons:
-  sonarqube:
-    enabled: false
-
-  anchore:
-    enabled: false
-
-  gitlab:
-    enabled: false
-
-  argocd:
-    enabled: false
-
-  minioOperator:
-    enabled: false
-
-  minio:
-    enabled: false
-    values:
-      zones:
-        servers: 1
-      volumesPerServer: 1
-
-  mattermostoperator:
-    enabled: false
-
-  mattermost:
-    enabled: false
-
-  nexus:
-    enabled: false
-    # bug in bigbang 1.18.0, remove this in 1.19.0
-    git:
-      tag: "34.1.0-bb.2"
-
-  keycloak:
-    enabled: false
-    ingress:
-      gateway: "public"
-    values:
-      replicas: 1
-      resources:
-        requests:
-          cpu: 10m
-          memory: 16Mi
-        limits: {}
-
+    sonarqube:
+        enabled: false
+    anchore:
+        enabled: false
+    gitlab:
+        enabled: false
+    argocd:
+        enabled: false
+    minioOperator:
+        enabled: false
+    minio:
+        enabled: false
+        values:
+            zones:
+                servers: 1
+            volumesPerServer: 1
+    mattermostoperator:
+        enabled: false
+    mattermost:
+        enabled: false
+    nexus:
+        enabled: false
+        # bug in bigbang 1.18.0, remove this in 1.19.0
+        git:
+            tag: 34.1.0-bb.2
+    keycloak:
+        enabled: false
+        ingress:
+            gateway: public
+        values:
+            replicas: 1
+            resources:
+                requests:
+                    cpu: 10m
+                    memory: 16Mi
+                limits: {}
 istiooperator:
-  enabled: true
-
+    enabled: true
 jaeger:
-  enabled: true
-
+    enabled: true
 kiali:
-  enabled: true
-
+    enabled: true
 clusterAuditor:
-  enabled: true 
-  values:
-    resources:
-      requests:
-        cpu: 100m
-        memory: .5Gi
-
+    enabled: true
+    values:
+        resources:
+            requests:
+                cpu: 100m
+                memory: .5Gi
 gatekeeper:
-  enabled: true
-  values:
-    replicas: 1
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
-
+    enabled: true
+    values:
+        replicas: 1
+        resources:
+            requests:
+                cpu: 100m
+                memory: 256Mi
 logging:
-  enabled: true
-  values:
-    elasticsearch:
-      master:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          requests:
-            cpu: .5
-          limits: {}
-      data:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          limits: {}
-          requests:
-            cpu: 0.1
-
+    enabled: true
+    values:
+        elasticsearch:
+            master:
+                count: 1
+                persistence:
+                    size: 5Gi
+                resources:
+                    requests:
+                        cpu: 0.5
+                    limits: {}
+            data:
+                count: ENC[AES256_GCM,data:lA==,iv:+GmkbyMMjBGpc4E2D62uubBG3jXj6l/qXbNP9U/pbZk=,tag:qEF4foCABUPi79qFob/dUA==,type:int]
+                persistence:
+                    size: ENC[AES256_GCM,data:WI/o,iv:sq7MbOz/snw3L7ScHz5WoToXrbc2dfu9zrM592xSvhg=,tag:OoHP0P553zKxvj9ElsQXvg==,type:str]
+                resources:
+                    limits: {}
+                    requests:
+                        cpu: ENC[AES256_GCM,data:haom,iv:OQ44C2juM+FcRvO83pTWpBeciE08mMShTMKYUgepzGI=,tag:B+z3afU2Gyptx9GuT/w9cQ==,type:float]
 eckoperator:
-  enabled: true
-
+    enabled: true
 fluentbit:
-  values:
-    securityContext:
-      privileged: true
-
+    values:
+        securityContext:
+            privileged: true
 monitoring:
-  enabled: true
-  values:
-    alertmanager:
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    prometheusOperator:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 200Mi
-        limits: {}
-    prometheus:
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    grafana:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 128Mi
-        limits: {}
-    kubeStateMetrics:
-      resources:
-        requests:
-          cpu: 10m
-          memory: 32Mi
-        limits: {}
-    nodeExporter:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 30Mi
-        limits: {}
-
+    enabled: true
+    values:
+        alertmanager:
+            alertmanagerSpec:
+                resources:
+                    requests:
+                        cpu: 100m
+                        memory: 200Mi
+                    limits: {}
+        prometheusOperator:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 200Mi
+                limits: {}
+        prometheus:
+            prometheusSpec:
+                resources:
+                    requests:
+                        cpu: 100m
+                        memory: 200Mi
+                    limits: {}
+        grafana:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 128Mi
+                limits: {}
+        kubeStateMetrics:
+            resources:
+                requests:
+                    cpu: 10m
+                    memory: 32Mi
+                limits: {}
+        nodeExporter:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 30Mi
+                limits: {}
 twistlock:
-  enabled: true
-  values:
-    console:
-      persistence:
-        size: 5Gi
-
+    enabled: true
+    values:
+        console:
+            persistence:
+                size: 5Gi
 istio:
-  enabled: true
+    enabled: true
+    gateways:
+        public:
+            type: kubernetes.io/tls
+            data:
+                tls.key: ENC[AES256_GCM,data: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,iv:245oqkdQUR5BBAUPfHV26Rs9PZRiWnZ0VpAziFYu7uA=,tag:4WSZLENAZxbJiqheJA42Cw==,type:str]
+                tls.crt: ENC[AES256_GCM,data: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,iv:h8lrMpAIq8YJVMga4i9zDDwCZfrwI4Fd9LyCPLlhQuI=,tag:ymUmROkw9AjLDLoNfSy/Ng==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-03-24T16:13:39Z"
+    mac: ENC[AES256_GCM,data:nK87Iu/WilQDp/FalyFX4JWApqH/+5rufN7vp7/eQfd1kqw0Zbhep+T4FwU43yKzxh53RW8yX0MMyw5waTb/MAYdoFmEtJBHZ8NCFl5XnUzMLjaVL/Wzitil01gGivRW+b32/raV77iuqWt2OlLdvkAsKGylI30WGfF1dXXEAmo=,iv:ooy0NaYfNyH35b4da4HE9Gq59eSFjKuMlhqIftLa0NQ=,tag:jq9WGPK81xVnmNJ+VBId1Q==,type:str]
+    pgp:
+        - created_at: "2022-03-24T16:13:38Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
 
-  gateways:
-    public:  
-       type: kubernetes.io/tls    
-       data:         
-         tls.key: ${ISTIO_GW_KEY}
-         tls.crt: ${ISTIO_GW_CRT}
-
+            hQIMA0/UHow+A74pARAAnXGtca/NI3rzi802cMzTCq5Vj51bz4uuRDiiuyQHwsv5
+            Z7Wo27BwWgTXTcdZR+mpujeR9cOpjFcM8t8SXTbQyOGNia3QvdyPDudsY8+hsMxq
+            0VI0M54fozhE1u5Qe5oeLq19fPFIZcme0xWVo9VYC0l/OPCK5tCB2HC07mxisG1M
+            boQ+ZWvbmdFMX+CTOQVu3RGkOSs6AL2YqmZ5bxJ/YKZDTrUemK5gI4ORYggDa/Ym
+            PGNbPs4gQBOppjnhul3NvjVnku7UziwFjn7IeE1ASjf1q6iOiRGe0kADerB+d+R/
+            RbDt5bdBfRNgm/cJvfbIsJGIr+X0kpeE+2jXKqxhGNJLFJzljI4RiIawpy/sgdTz
+            FSx1kmimwLf/paF4zzBFxrRl6Q/fkERfEF+J8eoPPpgsNFP+2FV8MCz708/00tbN
+            15/5RH2llgs+mFLpQ8KF8zZhA3XFJ5ecGYOzCvPajCO6ljbZxsPq5N9PYicHvaCh
+            RwRH0U8fg3JhVO6O8vQbd5AWCAaJFGK9VE/PR1ItOmtHN16OcKac6y/xOU3XHLLv
+            Q9qHd6viQ3a7xB47qC5QZTshGdHFRZkCcBndYoduaxo7na2nmgZc6MjAmjrjRe8r
+            /ZFArwn7T0GTTqIeoXW3NC+XKIRe3wH22AtE4fi/ghHc0F5TVSI7zAiMcVlbLE7S
+            XAEXYNTdhBsfFcIwn4w6hI4lz6Wn4bkGNYxF6msUUImLX6uWUKxxmbV41xsoonvL
+            dARdHh83TxODASNX2NJIq8Su6LQ5GR9KuOncDoy0pCm3ZPy9RRJ4o+defj1T
+            =VDG1
+            -----END PGP MESSAGE-----
+          fp: 674C9C1A0FEBB62E889B2FE9740865FB44BD95D4
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
