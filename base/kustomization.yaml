@@ -9,6 +9,7 @@ configMapGenerator:
     behavior: merge
     files:
       - values.yaml=configmap.yaml
+      - values.yaml=istio-gw-cert.enc.yaml
 patchesStrategicMerge:
   - secrets.enc.yaml
   - |-
