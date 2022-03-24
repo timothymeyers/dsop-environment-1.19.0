@@ -1,0 +1,171 @@
+domain: bigbang.dev
+
+flux:
+  interval: 1m
+  rollback:
+    cleanupOnFail: false
+
+addons:
+  sonarqube:
+    enabled: false
+
+  anchore:
+    enabled: false
+
+  gitlab:
+    enabled: false
+
+  argocd:
+    enabled: false
+
+  minioOperator:
+    enabled: false
+
+  minio:
+    enabled: false
+    values:
+      zones:
+        servers: 1
+      volumesPerServer: 1
+
+  mattermostoperator:
+    enabled: false
+
+  mattermost:
+    enabled: false
+
+  nexus:
+    enabled: false
+    # bug in bigbang 1.18.0, remove this in 1.19.0
+    git:
+      tag: "34.1.0-bb.2"
+
+  keycloak:
+    enabled: false
+    ingress:
+      gateway: "public"
+    values:
+      replicas: 1
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits: {}
+
+
+
+istiooperator:
+  enabled: true
+
+jaeger:
+  enabled: true
+
+kiali:
+  enabled: true
+
+clusterAuditor:
+  enabled: true 
+  values:
+    resources:
+      requests:
+        cpu: 100m
+        memory: .5Gi
+
+gatekeeper:
+  enabled: true
+  values:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+
+logging:
+  enabled: true
+  values:
+    elasticsearch:
+      master:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits: {}
+      data:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          limits: {}
+          requests:
+            cpu: 0.1
+
+eckoperator:
+  enabled: true
+
+fluentbit:
+  values:
+    securityContext:
+      privileged: true
+
+monitoring:
+  enabled: true
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits: {}
+    prometheusOperator:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits: {}
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits: {}
+    grafana:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits: {}
+    kubeStateMetrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits: {}
+    nodeExporter:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 30Mi
+        limits: {}
+
+twistlock:
+  enabled: true
+  values:
+    console:
+      persistence:
+        size: 5Gi
+
+
+istio:
+  enabled: true
+
+  gateways:
+    public:  
+      tls:
+       type: kubernetes.io/tls    
+       data:         
+         tls.key: ${ISTIO_GW_KEY}
+         tls.crt: ${ISTIO_GW_CRT}
