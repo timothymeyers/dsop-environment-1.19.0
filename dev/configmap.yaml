@@ -1,159 +1,163 @@
 domain: bigbang.dev
-flux:
-    interval: 1m
-    rollback:
-        cleanupOnFail: false
-addons:
-    sonarqube:
-        enabled: false
-    anchore:
-        enabled: false
-    gitlab:
-        enabled: false
-    argocd:
-        enabled: false
-    minioOperator:
-        enabled: false
-    minio:
-        enabled: false
-        values:
-            zones:
-                servers: 1
-            volumesPerServer: 1
-    mattermostoperator:
-        enabled: false
-    mattermost:
-        enabled: false
-    nexus:
-        enabled: false
-        # bug in bigbang 1.18.0, remove this in 1.19.0
-        git:
-            tag: 34.1.0-bb.2
-    keycloak:
-        enabled: false
-        ingress:
-            gateway: public
-        values:
-            replicas: 1
-            resources:
-                requests:
-                    cpu: 10m
-                    memory: 16Mi
-                limits: {}
-istiooperator:
-    enabled: true
-jaeger:
-    enabled: true
-kiali:
-    enabled: true
-clusterAuditor:
-    enabled: true
-    values:
-        resources:
-            requests:
-                cpu: 100m
-                memory: .5Gi
-gatekeeper:
-    enabled: true
-    values:
-        replicas: 1
-        resources:
-            requests:
-                cpu: 100m
-                memory: 256Mi
-logging:
-    enabled: true
-    values:
-        elasticsearch:
-            master:
-                count: 1
-                persistence:
-                    size: 5Gi
-                resources:
-                    requests:
-                        cpu: 0.5
-                    limits: {}
-eckoperator:
-    enabled: true
-fluentbit:
-    values:
-        securityContext:
-            privileged: true
-monitoring:
-    enabled: true
-    values:
-        alertmanager:
-            alertmanagerSpec:
-                resources:
-                    requests:
-                        cpu: 100m
-                        memory: 200Mi
-                    limits: {}
-        prometheusOperator:
-            resources:
-                requests:
-                    cpu: 100m
-                    memory: 200Mi
-                limits: {}
-        prometheus:
-            prometheusSpec:
-                resources:
-                    requests:
-                        cpu: 100m
-                        memory: 200Mi
-                    limits: {}
-        grafana:
-            resources:
-                requests:
-                    cpu: 100m
-                    memory: 128Mi
-                limits: {}
-        kubeStateMetrics:
-            resources:
-                requests:
-                    cpu: 10m
-                    memory: 32Mi
-                limits: {}
-        nodeExporter:
-            resources:
-                requests:
-                    cpu: 100m
-                    memory: 30Mi
-                limits: {}
-twistlock:
-    enabled: true
-    values:
-        console:
-            persistence:
-                size: 5Gi
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2022-03-24T23:09:52Z"
-    mac: ENC[AES256_GCM,data:ZpyT1QjYcy1blJCHcsxg0fBbl2UiYvg0IAvpDGIf6MpTVXs1HAirvlNGvrpJ3sXpTHqqCuEmN6xfZunGvOd9ICzZtIixL3ZJmjfuOKwR0/gkwECIghYIP6t3veHOFGdosgEQi72EBPJ753TXEICTPLwJKDVQyyC09oKCFI9kN2M=,iv:fRTPNH0Roa6nxipm220KtrCLcfnhvkl3VB/6nvLitrY=,tag:Dl9YQc1XzN38j52U7ncjTQ==,type:str]
-    pgp:
-        - created_at: "2022-03-24T23:09:51Z"
-          enc: |
-            -----BEGIN PGP MESSAGE-----
 
-            hQIMA0/UHow+A74pAQ/+P5G7VXG/+8UjN+U81endoKMVfrwb5M9Qkz0L5hthNw9B
-            uPSfK7TOU01ZOSXSed+hyD3SZDngMO/Y6KBhN9Pgul/rGYoqfTczMZJqKG/BH9Yf
-            LzMqgQi+X8iZEst0bYbi571eNDmkagQHflxFjIbYxsrHNFBnpGW/6M+OAb5BDjL6
-            8zoyhVsMcPFcg51l7kVmTZ8BFEiNH7RYu6ksF/HMDtctr5UY5NumQQkn5mZivt6f
-            AxWOeipoJg/Je/d9Eq0j4xyZj9DXvuYU2PTtiBVUWrMke/gcSgEUxHtB8yB3SBOE
-            8OdCoec5rWufSrwiN4wqaBqaqv3Lp7blFS84tPitHnx1k3XLeYiJz7wG/PH3B9UH
-            Eb6DlyAJkxr7gjPPwgEjGi7J6XewvMV0w8k45qN5E7MQ4hoqYsUUurDNHly/UYUi
-            hiwTkhmf8zKgusfXFwhPvsap3cTCHHxWuCDIY64u/jKxqtaq7hxb9wlOM+PKmORR
-            banPd+pLoe9E34kEgeVUyg22WA8kEWreM+pmAih/fZ0VdFmQgKYw5PVzpojIrrj6
-            fH6jWV0IiXHo4s5KLTcti/0sVXT7gOHP/yicM6pRF1Q1TsvzynrwLoyLaK3Pt/eU
-            Ceotir9GoSbbgmY3FxwcOnJoNMkuOjP1hd1F9XWdaUHgM5PrfHe9KU8kOCZ2Df/S
-            XAGCru2+ey+v4AKdDXuperX9Su/A6f39CwyZs7Tap7Cz6fr2MCC3KLWA1XDfovpV
-            b7YIiMIUwbpByjNuKP/uhbZfx1L6vnrnxvC+7MyZeB/FpIrqeXR0avcOhotb
-            =ATQv
-            -----END PGP MESSAGE-----
-          fp: 674C9C1A0FEBB62E889B2FE9740865FB44BD95D4
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.1
+flux:
+  interval: 1m
+  rollback:
+    cleanupOnFail: false
+
+addons:
+  sonarqube:
+    enabled: false
+
+  anchore:
+    enabled: false
+
+  gitlab:
+    enabled: false
+
+  argocd:
+    enabled: false
+
+  minioOperator:
+    enabled: false
+
+  minio:
+    enabled: false
+    values:
+      zones:
+        servers: 1
+      volumesPerServer: 1
+
+  mattermostoperator:
+    enabled: false
+
+  mattermost:
+    enabled: false
+
+  nexus:
+    enabled: false
+    # bug in bigbang 1.18.0, remove this in 1.19.0
+    git:
+      tag: "34.1.0-bb.2"
+
+  keycloak:
+    enabled: false
+    ingress:
+      gateway: "public"
+    values:
+      replicas: 1
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits: {}
+
+
+
+istiooperator:
+  enabled: true
+
+jaeger:
+  enabled: true
+
+kiali:
+  enabled: true
+
+clusterAuditor:
+  enabled: true 
+  values:
+    resources:
+      requests:
+        cpu: 100m
+        memory: .5Gi
+
+gatekeeper:
+  enabled: true
+  values:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+
+logging:
+  enabled: true
+  values:
+    elasticsearch:
+      master:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits: {}
+ 
+
+eckoperator:
+  enabled: true
+
+fluentbit:
+  values:
+    securityContext:
+      privileged: true
+
+monitoring:
+  enabled: true
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits: {}
+    prometheusOperator:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+        limits: {}
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits: {}
+    grafana:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits: {}
+    kubeStateMetrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits: {}
+    nodeExporter:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 30Mi
+        limits: {}
+
+twistlock:
+  enabled: true
+  values:
+    console:
+      persistence:
+        size: 5Gi
+
+ 
+
+  
+          
+
+
+
+ 
+ 
+
