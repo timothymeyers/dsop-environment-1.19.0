@@ -52,6 +52,8 @@ addons:
           memory: 16Mi
         limits: {}
 
+
+
 istiooperator:
   enabled: true
 
@@ -156,6 +158,7 @@ twistlock:
       persistence:
         size: 5Gi
 
+
 istio:
   enabled: true
 
@@ -165,4 +168,3 @@ istio:
        data:         
          tls.key: ${ISTIO_GW_KEY}
          tls.crt: ${ISTIO_GW_CRT}
-

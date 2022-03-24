@@ -4,8 +4,7 @@ configMapGenerator:
   - name: environment
     behavior: merge
     files:
-      - values.yaml=configmap.yaml
-      - values.yaml=istio-gw-cert.enc.yaml
+      - values.yaml=configmap.yaml       
 patchesStrategicMerge:
 ## Enable the line below if a secrets.enc.yaml is created in this directory
 # - secrets.enc.yaml
