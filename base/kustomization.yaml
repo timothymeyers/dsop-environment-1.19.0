@@ -3,7 +3,7 @@
 bases:
   - git::https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=1.29.0
 resources:
-  - istio-gw-cert.enc.yaml
+  # - istio-gw-cert.enc.yaml
 configMapGenerator:
   - name: common
     behavior: merge
