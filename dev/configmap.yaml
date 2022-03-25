@@ -1,174 +1,159 @@
 domain: bigbang.dev
-
 flux:
-  interval: 1m
-  rollback:
-    cleanupOnFail: false
-
+    interval: 1m
+    rollback:
+        cleanupOnFail: false
 addons:
-  sonarqube:
-    enabled: false
-
-  anchore:
-    enabled: false
-
-  gitlab:
-    enabled: false
-
-  argocd:
-    enabled: false
-
-  minioOperator:
-    enabled: false
-
-  minio:
-    enabled: false
-    values:
-      zones:
-        servers: 1
-      volumesPerServer: 1
-
-  mattermostoperator:
-    enabled: false
-
-  mattermost:
-    enabled: false
-
-  nexus:
-    enabled: false
-    # bug in bigbang 1.18.0, remove this in 1.19.0
-    git:
-      tag: "34.1.0-bb.2"
-
-  keycloak:
-    enabled: false
-    ingress:
-      gateway: "public"
-    values:
-      replicas: 1
-      resources:
-        requests:
-          cpu: 10m
-          memory: 16Mi
-        limits: {}
-
-
-
+    sonarqube:
+        enabled: false
+    anchore:
+        enabled: false
+    gitlab:
+        enabled: false
+    argocd:
+        enabled: false
+    minioOperator:
+        enabled: false
+    minio:
+        enabled: false
+        values:
+            zones:
+                servers: 1
+            volumesPerServer: 1
+    mattermostoperator:
+        enabled: false
+    mattermost:
+        enabled: false
+    nexus:
+        enabled: false
+        # bug in bigbang 1.18.0, remove this in 1.19.0
+        git:
+            tag: 34.1.0-bb.2
+    keycloak:
+        enabled: false
+        ingress:
+            gateway: public
+        values:
+            replicas: 1
+            resources:
+                requests:
+                    cpu: 10m
+                    memory: 16Mi
+                limits: {}
 istiooperator:
-  enabled: true
-
+    enabled: true
 jaeger:
-  enabled: true
-
+    enabled: true
 kiali:
-  enabled: true
-
+    enabled: true
 clusterAuditor:
-  enabled: true 
-  values:
-    resources:
-      requests:
-        cpu: 100m
-        memory: .5Gi
-
+    enabled: true
+    values:
+        resources:
+            requests:
+                cpu: 100m
+                memory: .5Gi
 gatekeeper:
-  enabled: true
-  values:
-    replicas: 1
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
-
+    enabled: true
+    values:
+        replicas: 1
+        resources:
+            requests:
+                cpu: 100m
+                memory: 256Mi
 logging:
-  enabled: true
-  values:
-    elasticsearch:
-      master:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          requests:
-            cpu: .5
-          limits: {}
- 
-
+    enabled: true
+    values:
+        elasticsearch:
+            master:
+                count: 1
+                persistence:
+                    size: 5Gi
+                resources:
+                    requests:
+                        cpu: 0.5
+                    limits: {}
 eckoperator:
-  enabled: true
-
+    enabled: true
 fluentbit:
-  values:
-    securityContext:
-      privileged: true
-
+    values:
+        securityContext:
+            privileged: true
 monitoring:
-  enabled: true
-  values:
-    alertmanager:
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    prometheusOperator:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 200Mi
-        limits: {}
-    prometheus:
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    grafana:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 128Mi
-        limits: {}
-    kubeStateMetrics:
-      resources:
-        requests:
-          cpu: 10m
-          memory: 32Mi
-        limits: {}
-    nodeExporter:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 30Mi
-        limits: {}
-
+    enabled: true
+    values:
+        alertmanager:
+            alertmanagerSpec:
+                resources:
+                    requests:
+                        cpu: 100m
+                        memory: 200Mi
+                    limits: {}
+        prometheusOperator:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 200Mi
+                limits: {}
+        prometheus:
+            prometheusSpec:
+                resources:
+                    requests:
+                        cpu: 100m
+                        memory: 200Mi
+                    limits: {}
+        grafana:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 128Mi
+                limits: {}
+        kubeStateMetrics:
+            resources:
+                requests:
+                    cpu: 10m
+                    memory: 32Mi
+                limits: {}
+        nodeExporter:
+            resources:
+                requests:
+                    cpu: 100m
+                    memory: 30Mi
+                limits: {}
 twistlock:
-  enabled: true
-  values:
-    console:
-      persistence:
-        size: 5Gi
+    enabled: true
+    values:
+        console:
+            persistence:
+                size: 5Gi
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-03-25T15:49:30Z"
+    mac: ENC[AES256_GCM,data:kBkyNiEZbsM8fueveusEHE8VEzdTukEbamjbGO36y/pDel9nt/SEgIBzN75Inz5oYaBZZs3FUjVzHl3p0jRHeCALei8DIYPkAmurQlUKzNvmVtpd3kefBXDZXg0sYcCabMljpijUUNf9zQ5qlmaf3FvoQKIG1XvgBNKgHrvMZsQ=,iv:47H/KOvmvvVd5qYnMEgQ+XZpRZXX341A2wnyW5cjb4I=,tag:nOTs8/nWueVUXKZx+R4fmg==,type:str]
+    pgp:
+        - created_at: "2022-03-25T15:49:29Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
 
- istio:
-  enabled: true 
-  gateways:
-    public:
-      tls:
-      type: kubernetes.io/tls
-      data:
-        key:
-          tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBc2lza1FuWVRoYWJGL1R5YWhjV3pDZFpuTy9hNWMyUXlSdVBlQTh3UUZIMjNYTjNrCkZJcVpJd2JUQStHSS8rUEZudVdaRWxoZ2RRVVowVTRUQVlXR3VGK3h0QXAybXY0SmFPanBBRUZKdEFuelF5NVkKcUE3cXZXUWNLUUU1S21jTkhOa2EwaUovb0g3WDNPQ3o0MndKZXBibTd4ME1YWEdTTWZ2a1R3MWJOVHoyb2dCMwozR2pxRXdndWVvUG9ZOXIxODlPUzZ6UmxTbENzZE04R0k4eDFyajlqK052MmpYVnBGODZHcldRK3JEbkU1aWV2CnY0bG9oV2wrbm14RmFoc0Q2Mkx6Z0VhK05EbkdPdUh5bWZuQ2VJclNEQlR6dCt1SWpkaGJmdlM1MlhGRlB0MUwKYUkzY2toSm16UGNYeStUMFZsOWcxbGtQTUNvWHZtQThySktEK1FJREFRQUJBb0lCQUc1NzBrQmtlRGFvOUozVQp0djI5V3dqK3E0WER1YnlVcFpqUU5SeWxybE1Hb200MEt2dVI5dVNCbHRrUlFxTnIyMkJ0Z0Q2Z0R6Q0J1VURSCjZYZElGZ0svVkxNUXlmdlRESUxCNjdyOHdYZWpzL1kxQjBVdit1RDI4Mzk2QXJrSXJsajFTR3lHZUI1T2lnMnUKU2Q3OVgrTmxNRStXODlQK1dXb2xpYTU3MmROb3NTZ0RJdmNpQUVZMUhCa1JVU3NkQ1IxcURmVzJHSVI0QXRwQwo2bzZGR1BwOG80QVZsWThJVGJ6Rm96QXJQemhLMm81T3hmOThDd0ZaSlhNVzBBSEJudHlaMmtNeEU3K3NzQVo5CmdEMS9mc240ZExTZDJBejZyM2RqUnozSTN5c2cvOVg2bThTMVlvMFhvYzkxOEc2TVhLNC9kY0RqT05uOTBYU1YKcnpQOHd3RUNnWUVBNHlETlJub3JFWklVaUErdExmWGtWeUJRb2R1WlhpQlpmNXlFZURXcU5uMGwyTVdudFYrYgpIelhJTnNrQlU2Rm12QWhVeFMxbjJyNTJEMEhPNTV4Y1FNajhwQWNTZHdPemk1Tkc2ZmFYYVdMOW9PeDhJeUtNCk1sNm9wRlc0L1B3OVFhRkxheGZvY0oyOGQvdU80MjJMMEVoV0N0WUlGa2puWnBOb3V0TUNHK3NDZ1lFQXlORVkKNjBXV01JcEtnNmc4RGs2aE9oTGpCV3ZtdXdDOWVvbWtCZlYrVWIxQ2VlS2VKWWpHd1pZY1NMTWNlTG9oaDdNNwptM2EwTy9SSGN1bTltVkNvWWpBbkV0RnNLOThWMm1INkluaW02Q1NGOFl1R01LcWZEb0xzWmV0ek1LVEMzSkViCmNLV2FTaE1DL2VRMG1pS3p4MTFIbU93QVliMWtTRzlCZGhqOEdxc0NnWUVBa2ZXT2RYQWxKVkYvS0VFS3hiSnoKWHhwQk53THNlSFRKanh5Q2RNM242TVJjQWdaalZFZHdaSW9uZEMyUVVMSTBWem56WUJOaDNrenZpYlo4eEpMVApKajhEUEZYZkkrU1pDV1ZIK1NxaSt2TEdreGZtWHAzaEFxMmFLcUY4RS9mMVZhdlZ6Nmk1azBXS3pJQTR2eWF5CjV0TFZtSGtiRVZjZ2ZlYlZNdHBQVEtrQ2dZQUVmNHFMV3BldXBxcGNvSndYeGZNZWxlVzM3VjdSdVlhRkJDaEUKYWVkV2RXTFQwQnV5dzRtUU5JaVZxRTF1OXR4aGFjWmdDUnlvYXlSZWtwWElwV0hnTVN2dTQvb0VVWTd2d1ZvVgpBNWJaaEZmcnZUQllUcm9aWFIxbWV3dXRmME5PSllIejJBSEl2dnhHSzZKeUFXejlmajFvVTREK3IzdGJsQUpuClhzL20yUUtCZ1FDaDFsVHk1WHhxMlNwRDhZTXErdUJ3UEllN3RXRUFIOGd5Q2dQbnN6MVNDTGFhVURGakd2c3YKYW9objYwSmE4MmZ0QnBkR25vTzdrMzNYSzBZOXVLRmZpb3R2T3c5aloxN2c1eXhtaGhGcCtLazFNWWRhS3puSQpJMTk0RENmZjkzRmQrZWNmZFJuTTB0MFhJQnl1Tnc4S0pwY3hEdWdjVTdSa3ZpZ1F3ZFdSTlE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
-        cert:        
-          tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURtVENDQW9HZ0F3SUJBZ0lVZlpLaExwL1o3dUc5KzFDMmxjSjZVQUR5Mjg0d0RRWUpLb1pJaHZjTkFRRUwKQlFBd1NqRUxNQWtHQTFVRUJoTUNWVk14R0RBV0JnTlZCQW9NRDE5RVpYWmxiRzl3YldWdWRDQkRRVEVoTUI4RwpBMVVFQXd3WVJHVjJaV3h2Y0cxbGJuUWdZMlZ5ZEdsbWFXTmhkR1Z6TUI0WERUSXlNRE15TkRFMk5UZ3pPRm9YCkRUSXpNRE15TkRFMk5UZ3pPRm93UHpFTE1Ba0dBMVVFQmhNQ1ZWTXhHakFZQmdOVkJBb01FVXh2WTJGc0lFUmwKZG1Wc2IzQnRaVzUwTVJRd0VnWURWUVFEREF0aWFXZGlZVzVuTG1SbGRqQ0NBU0l3RFFZSktvWklodmNOQVFFQgpCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMSXJKRUoyRTRXbXhmMDhtb1hGc3duV1p6djJ1WE5rTWtiajNnUE1FQlI5CnQxemQ1QlNLbVNNRzB3UGhpUC9qeFo3bG1SSllZSFVGR2RGT0V3R0Zocmhmc2JRS2RwcitDV2pvNlFCQlNiUUoKODBNdVdLZ082cjFrSENrQk9TcG5EUnpaR3RJaWY2QisxOXpncytOc0NYcVc1dThkREYxeGtqSDc1RThOV3pVOAo5cUlBZDl4bzZoTUlMbnFENkdQYTlmUFRrdXMwWlVwUXJIVFBCaVBNZGE0L1kvamI5bzExYVJmT2hxMWtQcXc1CnhPWW5yNytKYUlWcGZwNXNSV29iQSt0aTg0Qkd2alE1eGpyaDhwbjV3bmlLMGd3VTg3ZnJpSTNZVzM3MHVkbHgKUlQ3ZFMyaU4zSklTWnN6M0Y4dms5RlpmWU5aWkR6QXFGNzVnUEt5U2cva0NBd0VBQWFPQmdUQi9NQjhHQTFVZApJd1FZTUJhQUZNTElld2lFN25LcmNraVduOHM1UFVYRlEwVmlNQWtHQTFVZEV3UUNNQUF3Q3dZRFZSMFBCQVFECkFnVHdNQjBHQTFVZEpRUVdNQlFHQ0NzR0FRVUZCd01CQmdnckJnRUZCUWNEQWpBbEJnTlZIUkVFSGpBY2dndGkKYVdkaVlXNW5MbVJsZG9JTktpNWlhV2RpWVc1bkxtUmxkakFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBdmRxVgpNOXFteWkyNU8ybitWN2k5Z2wveng4QmtURkk2NWFuMUZJdUplcmJXWGUycDM4ei9Od2p1OU1sQzVpSlRKUXFMCkhLU2dvUytJaEtYc2o5bVlxRXgzT2poNlZZZDgxMjlxZjRkQjVId2hudmdyL0RCakVMSkZFMlExcXVXdy9ONDkKallucEllUjZzT0xJNy85VHlvWmdsbktHRmVSL3NHNTAwZklza016TGJkYVBsME42UG8zTktRcFFMU1lJU3JzTAp1WTU0TG5FRlJrVjZHeHlQK0JkcWpPOXpXT2h3Mml5SFlrcVdCMHJyQkw5akkyZkQ4WjQ4dWQvVXllUVV2NUtoCnltaFNKbzN3ZzFXS0xhY2RtWW1UZFVxc2RkVmdPVHAveTlSZjVqUjZFYzVxeHdtNDZ6M2Q4a3V1TllYKytUdHAKQkRMYWVMS2g2Ym1kUmZTb3p3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-
-  
-          
-
-
-
- 
- 
-
-
+            hQIMA0/UHow+A74pAQ/9FhPnp+lZybeP+VRJQ3Qdo2oUE137qkRA3xBv2trNmFiL
+            QxMRmpos3pWWZUXeBbQ+qg/7IY49GP/AmLro3CbmdWtRzkZLSEvRFCHNZEyZoJyS
+            AZ/FXXZq+A4GzEJcMawDCAsK7Z9XyadBsqI5XjEGXEtR5OIxwv6dphJDNRo5jrod
+            7coRVbGyuOSU8cOYoQq3vyeU8SuE/SKJErPEzQm6VWvUsBxwug5oCdUzIL8+uKPA
+            LGkKUGYXMfrrp9vyHuCcWDcOf4A76/DeR+RxtuJLPxB6UBd/ESxcOpcX2aZQ4qWF
+            J8Rvc3DNh05EzkRaejJSNE/HtiENphs0gq7mp69e4axQ+bvEGSt+HPX2trAwOR14
+            Br2JWgGVxlwV5HVe1d8ifiqIP5+NRO0hGqN6nVTGxa861HzvD9hYlCJllMbTo4ej
+            +D3E8VH+4dZm788xn4Tm2QREbN5XmG8CXGSoZM+jMSuToZqpZ63znEiY+/CW05oI
+            NQRtRY/HY52+z/x+Ftp+P2JfGW6gZIdGwWVDc11mpHZqlVmqQCRsavQ0B4wlfUz7
+            YQa7yUM9rcYTdDctsdX4uaELmiSs0V8ytVx5p028YrtH4aUdw1MaElVadIuMmcCf
+            qcevSjn0OayfP7gvWRJcFqMBgYHkDPUFvRZz/VquCqBn6QvnT0u3JhgHtIf76TnS
+            XgE2K43bn0kAhDRoRqPnR8W69dhbX49xOuYmOyuK/fK+qxIVnbPQUoVqg6qEVyZr
+            1TADYH0v6HrE2oiVNbQiNiAStALcGeD2SZpa15sdAEdLhr15x7BbLWRRf+2XKFM=
+            =SzYF
+            -----END PGP MESSAGE-----
+          fp: 674C9C1A0FEBB62E889B2FE9740865FB44BD95D4
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1
