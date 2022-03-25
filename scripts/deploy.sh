@@ -73,7 +73,7 @@ if [[ $USE_KEYVAULT_CERT == "true" ]]; then
   ISTIO_GW_CRT=$(az keyvault secret show --id $ISTIO_GW_CRT --query 'value' -o tsv)
   ISTIO_GW_KEY=$(az keyvault secret show --id $ISTIO_GW_KEY --query 'value' -o tsv)
 fi
-
+ 
 envsubst < $scriptPath/secrets.enc.yaml.template > $scriptPath/../base/secrets.enc.yaml
 envsubst < $scriptPath/configmap.yaml.template > $scriptPath/../dev/configmap.yaml
 sops --encrypt --in-place $scriptPath/../base/secrets.enc.yaml
