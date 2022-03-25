@@ -75,12 +75,15 @@ if [[ $USE_KEYVAULT_CERT == "true" ]]; then
 fi
 
 envsubst < $scriptPath/secrets.enc.yaml.template > $scriptPath/../base/secrets.enc.yaml
-envsubst < $scriptPath/istio-gw-cert.enc.yaml.template > $scriptPath/../base/istio-gw-cert.enc.yaml
+envsubst < $scriptPath/configmap.yaml.template > $scriptPath/../dev/configmap.yaml
 sops --encrypt --in-place $scriptPath/../base/secrets.enc.yaml
-sops --encrypt --in-place $scriptPath/../base/istio-gw-cert.enc.yaml
-git add $scriptPath/../base/secrets.enc.yaml $scriptPath/../base/istio-gw-cert.enc.yaml
+#sops --encrypt --in-place $scriptPath/../dev/configmap.yaml
+#git add $scriptPath/../base/secrets.enc.yaml $scriptPath/../base/istio-gw-cert.enc.yaml
+git add $scriptPath/../base/secrets.enc.yaml  $scriptPath/../dev/configmap.yaml
 git commit -m "Updated by deployment script $(date)"
 git push
+
+
 
 if [[ $DEPLOY_AKS == "true" ]]; then
   which az > /dev/null || { echo -e "💥 Error! Command az not installed"; exit 1; }
