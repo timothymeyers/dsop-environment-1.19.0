@@ -52,8 +52,7 @@ addons:
           memory: 16Mi
         limits: {}
 
-istio:
-  enabled: true
+
 
 istiooperator:
   enabled: true
@@ -93,14 +92,7 @@ logging:
           requests:
             cpu: .5
           limits: {}
-      data:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          limits: {}
-          requests:
-            cpu: 0.1
+ 
 
 eckoperator:
   enabled: true
@@ -158,3 +150,70 @@ twistlock:
     console:
       persistence:
         size: 5Gi
+
+istio:
+      enabled: true
+      gateways:
+        public:
+          tls:
+            key: |-
+              -----BEGIN RSA PRIVATE KEY-----
+              MIIEowIBAAKCAQEApWZQCzRPrpEFtvdj5HstTze4YLrwFT3LKnDsgEQ/oMlZRSUT
+              nzP713nYVNKgRMdD3nS9pbTURP0YqGeG0DIT8tYyZAz7t2k4DJ82o4cogD1BNl+a
+              pSJGVCWdBswf5BJZNwEuAmOEUIewOWDcaHUV5zxwTscHVPU9QGcd821xPSCU4FwE
+              FVq1CfCTvdcufPTEiNcdnksoZQvhkq3kJ5jXg+R3K2B4nF3s5kgdcZSRrpwvObSK
+              TSSe/fREZBOr2IHiTT2gChJdmUYgcubVL9RlzpXtqkgZXzgVIXF7KwQYW7mY94aH
+              sPe9l0dp/paPvkOpGIGLGWKdJMr0iczQXG+15wIDAQABAoIBAQCi43Xk8umeQ5hb
+              LpwkAeMHZxqfuLqEUMzqyTdAwvXexSyzWeZPHYTiGk8giiXoVk3SoSm8La/3GULV
+              Zs9v7kGTH7uUqOylHmxikdHfjlYmpSy5/cFw66ZTbI+OiCzIEgHml7TWCWffXyIA
+              ABJQlS6zAeSg0IW596MQ7/yhJaElzoDkcAtiFwt2aoG9UoWSVN+vzQF424hAoSXp
+              epCY53OyEfpJlBAEWfNT0foIcW17KzIBMeESbcokr6nfIqFdDQBNs8hGYt8oQtNF
+              2ZieVldV9CB1WIu1yMLIAOq/0TeQl0L1WTadZB7ZBcPndA6uGDAOre0/E/JnPfbS
+              UurnV2yRAoGBANa11p8VqNVF9LO3Gei/yjXGuDETtY+oNNyo9x2sF8xf44izRM+2
+              Yq4uPxj0+arc67w1yW91qYdIiLVjXAwrOPB0o5mThDDEWCfUhlSplcGBvtvNvX12
+              9/1DMgji3fxlcwvjYHFojmIjzf0ZiWJE/F/7MUDlpSjRfusIQ/mfnff9AoGBAMU0
+              6tMCtyzLnYmTPIj7Z8ZvofH/6in8p2V19t1AcazecSnjQ1+AlZJCo+P59CVqI7Vf
+              LZCggssJPTR2Xe7tUTSQ9cS1EcIzxkDeO5KqwXKFQq1Eey704q6aw7kihg0ax3YQ
+              LHslcNZBJ22Whk+t8OWHx7HnY87DQmYEc2xbgZCzAoGAOtBUmf804DbpcNEXJ8ph
+              eZmVmtvrQA6zbD5ccqRRYIpjqW5xyvQK0+uXHR79xO//Iu8Y3o88gPI9gHJXJH4y
+              eqt4pPjjnPgrrb1pjodlnjwMK+mPnm6YP6fIbOa4KAsiGH+QS4B4gCmOo2X7XA/J
+              kgEc3MoLE8NPINKCzD4M54ECgYArjnuLLZ9don9iIoYNT1Hlb0SamcaTjX0/mKV0
+              ysYQw3TFJq/7yP/ANT3TnaKCHQZUCfibaAhbZegBzV8D5aC49oeB8ehBN4RDUZJg
+              25wseih28pguj+H9ZKt0GZ74CAEkH4BjlqpseCmIN+XkdWuulqXRsmTGBzSEKdmA
+              hlmApwKBgG0kZxNzIca8W7FVvfRK+QRjOhni+Q6mUSVqreG1R9Js7tULZE2xKBSn
+              hvQM+f95P845J6t4yyx72kt5MkY771f0FCVXrEEnnWktDx7rgCNTLBokgB27NYiH
+              FJ4ApEcPW0lZ69zajoP/O7EVpqfGELzeaWunzQkovDQHSr01yD+Z
+              -----END RSA PRIVATE KEY-----              
+            cert: |-
+              -----BEGIN CERTIFICATE-----
+              MIIDmTCCAoGgAwIBAgIUbhDPd9TbJT22QwfwsBuUZmW03lEwDQYJKoZIhvcNAQEL
+              BQAwSjELMAkGA1UEBhMCVVMxGDAWBgNVBAoMD19EZXZlbG9wbWVudCBDQTEhMB8G
+              A1UEAwwYRGV2ZWxvcG1lbnQgY2VydGlmaWNhdGVzMB4XDTIyMDMyNTE3MDIzOFoX
+              DTIzMDMyNTE3MDIzOFowPzELMAkGA1UEBhMCVVMxGjAYBgNVBAoMEUxvY2FsIERl
+              dmVsb3BtZW50MRQwEgYDVQQDDAtiaWdiYW5nLmRldjCCASIwDQYJKoZIhvcNAQEB
+              BQADggEPADCCAQoCggEBAKVmUAs0T66RBbb3Y+R7LU83uGC68BU9yypw7IBEP6DJ
+              WUUlE58z+9d52FTSoETHQ950vaW01ET9GKhnhtAyE/LWMmQM+7dpOAyfNqOHKIA9
+              QTZfmqUiRlQlnQbMH+QSWTcBLgJjhFCHsDlg3Gh1Fec8cE7HB1T1PUBnHfNtcT0g
+              lOBcBBVatQnwk73XLnz0xIjXHZ5LKGUL4ZKt5CeY14PkdytgeJxd7OZIHXGUka6c
+              Lzm0ik0knv30RGQTq9iB4k09oAoSXZlGIHLm1S/UZc6V7apIGV84FSFxeysEGFu5
+              mPeGh7D3vZdHaf6Wj75DqRiBixlinSTK9InM0FxvtecCAwEAAaOBgTB/MB8GA1Ud
+              IwQYMBaAFNS044N3X5CK14HVk+4GTFkFOe60MAkGA1UdEwQCMAAwCwYDVR0PBAQD
+              AgTwMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAlBgNVHREEHjAcggti
+              aWdiYW5nLmRldoINKi5iaWdiYW5nLmRldjANBgkqhkiG9w0BAQsFAAOCAQEAhtOa
+              JkVO4h43g7w+Lpa4lU4QcGpdewScH/3LVDTq4TU4OZNsDy5wr3MBvwJA6EtJ1+S/
+              nCRtilJTXqXTtRfAs0SAA+3ABQVbVr51R/uvMB799cswiZBs8J5f+tbonGg0X3Mu
+              I1dfvGLEclM7fY75Q4/SbnbyJSV21SlBBcpdZ3vS24V4hI8C52SGXUyaHhguNULj
+              y5m4jYvoKG3mkAjBzr9qJKI3JU6lBmb715BfBqb2p8l6AEq0SiGd1QT4oeNErvhv
+              3Me8Jb0HAw/OYZzCh4g4UYLzzmnPbQ0NUEnXAvcOV8XaNcLIZ2czOKZmCiqkhkeM
+              EeduOndraNV/Vg9EHg==
+              -----END CERTIFICATE-----
+
+  
+          
+
+
+
+ 
+ 
+
+
