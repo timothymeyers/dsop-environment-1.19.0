@@ -11,9 +11,9 @@ metadata:
 spec:
   interval: 1m
   gitImplementation: libgit2
-  url: https://github.com/cheruvu1/dsop-environment
+  url:   https://github.com/cheruvu1/dsop-environment-1.19.0
   ref:
-    branch: env/bbnew
+    branch: env/secret
   secretRef:
     name: private-git
 ---
