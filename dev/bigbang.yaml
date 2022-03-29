@@ -11,7 +11,7 @@ metadata:
 spec:
   interval: 1m
   gitImplementation: libgit2
-  url: https://github.com/timothymeyers/dsop-environment
+  url: https://github.com/timothymeyers/dsop-environment-1.19.0
   ref:
     branch: env/bb-lat-00
   secretRef:
