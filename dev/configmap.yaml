@@ -5,156 +5,72 @@ flux:
   rollback:
     cleanupOnFail: false
 
-addons:
-  sonarqube:
-    enabled: false
-
-  anchore:
-    enabled: false
-
-  gitlab:
-    enabled: false
-
-  argocd:
-    enabled: false
-
-  minioOperator:
-    enabled: false
-
-  minio:
-    enabled: false
-    values:
-      zones:
-        servers: 1
-      volumesPerServer: 1
-
-  mattermostoperator:
-    enabled: false
-
-  mattermost:
-    enabled: false
-
-  nexus:
-    enabled: false
-    # bug in bigbang 1.18.0, remove this in 1.19.0
-    git:
-      tag: "34.1.0-bb.2"
-
-  keycloak:
-    enabled: false
-    ingress:
-      gateway: "public"
-    values:
-      replicas: 1
-      resources:
-        requests:
-          cpu: 10m
-          memory: 16Mi
-        limits: {}
-
-istio:
-  enabled: true
-
-istiooperator:
-  enabled: true
-
-jaeger:
-  enabled: true
-
-kiali:
-  enabled: true
-
-clusterAuditor:
-  enabled: true 
-  values:
-    resources:
-      requests:
-        cpu: 100m
-        memory: .5Gi
-
-gatekeeper:
-  enabled: true
-  values:
-    replicas: 1
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
-
 logging:
-  enabled: true
   values:
     elasticsearch:
       master:
         count: 1
         persistence:
-          size: 5Gi
+          size: 256Mi
         resources:
           requests:
-            cpu: .5
-          limits: {}
+            cpu: 200m
+            memory: 1Gi
       data:
         count: 1
         persistence:
-          size: 5Gi
+          size: 256Mi
         resources:
-          limits: {}
           requests:
-            cpu: 0.1
+            cpu: 200m
+            memory: 1Gi
+    kibana:
+      count: 1
+      resources:
+        requests:
+          cpu: 200m
+          memory: 512Mi
 
-eckoperator:
+monitoring:
   enabled: true
+  values:
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 200m
+            memory: 1Gi
 
 fluentbit:
   values:
     securityContext:
       privileged: true
 
-monitoring:
-  enabled: true
+gatekeeper:
   values:
-    alertmanager:
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    prometheusOperator:
+    replicas: 1
+    controllerManager:
       resources:
         requests:
           cpu: 100m
-          memory: 200Mi
-        limits: {}
-    prometheus:
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
-    grafana:
+          memory: 256Mi
+    audit:
       resources:
         requests:
-          cpu: 100m
-          memory: 128Mi
-        limits: {}
-    kubeStateMetrics:
-      resources:
-        requests:
-          cpu: 10m
-          memory: 32Mi
-        limits: {}
-    nodeExporter:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 30Mi
-        limits: {}
+          cpu: 200m
+          memory: 256Mi
+
+kyverno:
+  values:
+    replicaCount: 1
 
 twistlock:
+  # tim - i turned this on for giggles
   enabled: true
   values:
     console:
       persistence:
-        size: 5Gi
+        size: 256Mi
+
+istio:
+  enabled: true
