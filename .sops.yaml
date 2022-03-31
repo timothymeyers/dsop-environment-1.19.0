@@ -1,13 +1,13 @@
 creation_rules:
 - encrypted_regex: '^(data|stringData)$'
   # Base is shared, you can add keys from each environment that uses base here
-  pgp: CD8078A18CF3DF9F61A86FDA841E93E3058E578D
-#    ,ANOTHER_CD8078A18CF3DF9F61A86FDA841E93E3058E578D
+  pgp: ECC929FB4CD205602FE5CEA46336EE4AA93AFC59
+#    ,ANOTHER_ECC929FB4CD205602FE5CEA46336EE4AA93AFC59
 # You can also isolate each key to specific directories by uncommenting the next 7 lines and adding the appropriate fingerprints
 #  path_regex: base/.*
 #- path_regex: dev/.*
 #  encrypted_regex: '^(data|stringData)$'
-#  pgp: CD8078A18CF3DF9F61A86FDA841E93E3058E578D
+#  pgp: ECC929FB4CD205602FE5CEA46336EE4AA93AFC59
 #- path_regex: prod/.*
 #  encrypted_regex: '^(data|stringData)$'
-#  pgp: ANOTHER_CD8078A18CF3DF9F61A86FDA841E93E3058E578D
+#  pgp: ANOTHER_ECC929FB4CD205602FE5CEA46336EE4AA93AFC59
